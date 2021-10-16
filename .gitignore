@@ -33,5 +33,5 @@ build/
 .vscode/
 
 
-.mvnw
-.mvnw.cmd
+mvnw
+mvnw.cmd
