@@ -23,5 +23,5 @@ public class Continent {
     private String name;
 
     @OneToMany
-    private Collection<Country> listOfCountries;
+    private Collection<Country> countryCollection;
 }

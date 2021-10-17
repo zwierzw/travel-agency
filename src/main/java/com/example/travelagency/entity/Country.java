@@ -5,9 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Collection;
 import java.util.UUID;
 
 @Entity
@@ -20,6 +19,13 @@ public class Country {
     @Id
     private UUID id;
     private String name;
+
+    @OneToOne
+    private Continent continent;
+
+    @OneToMany
+    private Collection<City> cityCollection;
+
 
 
 }
