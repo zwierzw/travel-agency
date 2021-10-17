@@ -14,7 +14,7 @@ public class Tour {
     private City departureCity;
     private Airport departureAirport;
     private City arrivalCity;
-    private City arrivalAirport;
+    private Airport arrivalAirport;
     private Hotel arrivalHotel;
     private Date departureDate;
     private Date arrivalDate;
@@ -22,8 +22,10 @@ public class Tour {
     private Type typeOfTour;
     private double priceForAdult;
     private double priceForChild;
-    private int isPromoted;
+    private boolean isPromoted;
     private int allPlacesForAdults;
     private int allPlacesForChildren;
+
+
 
 }
