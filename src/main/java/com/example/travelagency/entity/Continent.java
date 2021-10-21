@@ -22,6 +22,8 @@ public class Continent {
     private UUID id;
     private String name;
 
-    @OneToMany
-    private Collection<Country> countryCollection;
+    public Continent(String name) {
+        this.id = UUID.randomUUID();
+        this.name = name;
+    }
 }

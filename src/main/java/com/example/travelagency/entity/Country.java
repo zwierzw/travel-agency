@@ -20,12 +20,12 @@ public class Country {
     private UUID id;
     private String name;
 
-    @OneToOne
+    @ManyToOne
     private Continent continent;
 
-    @OneToMany
-    private Collection<City> cityCollection;
-
-
-
+    public Country(String name, Continent continent) {
+        this.id = UUID.randomUUID();
+        this.name = name;
+        this.continent = continent;
+    }
 }

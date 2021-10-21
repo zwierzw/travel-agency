@@ -3,17 +3,15 @@ package com.example.travelagency.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
 @Table (name = "airport")
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class Airport {
     @Id
@@ -22,4 +20,10 @@ public class Airport {
 
     @OneToOne
     private City city;
+
+    public Airport(String name, City city) {
+        this.id = UUID.randomUUID();
+        this.name = name;
+        this.city = city;
+    }
 }

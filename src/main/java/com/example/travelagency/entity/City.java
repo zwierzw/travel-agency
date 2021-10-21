@@ -19,13 +19,15 @@ public class City {
     private UUID id;
     private String name;
 
-    @OneToOne
+    @ManyToOne
     private Country country;
 
-    @OneToMany
-    private Collection<Hotel> hotelCollection;
 
-    @OneToOne
-    private Airport airport;
 
+    public City(String name, Country country) {
+        this.id = UUID.randomUUID();
+        this.name = name;
+        this.country = country;
+
+    }
 }
