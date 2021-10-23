@@ -30,17 +30,18 @@ class ContinentServiceTest {
         continentService.add(europa);
         List<Continent> continentList = continentRepository.findAll();
         //then
-        assertEquals(continentList.size(), 1);
+        assertEquals(1, continentList.size());
     }
 
     @Test
     void remove(){
         //given
         final String europa = "Europa";
+        continentService.add(europa);
         //when
         continentService.remove(europa);
-        List<Continent> continentList = continentRepository.findAll();
+        List<Continent> continentList = continentRepository.findAllByName(europa);
         //then
-        assertEquals(continentList.size(), 0);
+        assertEquals(0, continentList.size());
     }
 }

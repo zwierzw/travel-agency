@@ -23,7 +23,8 @@ public class ContinentService implements Admin {
 
     @Override
     public void remove(String name) {
-        List<Continent> continentList = continentRepository.findAll(continent.);
+        Continent continent = continentRepository.findByName(name);
+        continentRepository.delete(continent);
     }
 
     @Override
