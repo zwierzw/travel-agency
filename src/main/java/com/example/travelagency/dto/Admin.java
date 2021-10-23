@@ -6,8 +6,9 @@ import java.util.List;
 
 public interface Admin {
 
-     void addTour();
-     void removeTour();
-     List<Tour> showAllTours();
+     void add();
+     void remove();
+     void modify();
+     void show();
 
 }
