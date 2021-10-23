@@ -16,7 +16,7 @@ public class ContinentService implements Admin {
     private ContinentRepository continentRepository;
 
     @Override
-    public void add(String name) {
+    public void addContinent(String name) {
         final Continent continent = new Continent(name);
         continentRepository.save(continent);
     }
@@ -27,13 +27,5 @@ public class ContinentService implements Admin {
         continentRepository.delete(continent);
     }
 
-    @Override
-    public void modify(String name) {
 
-    }
-
-    @Override
-    public void show(String name) {
-
-    }
 }
