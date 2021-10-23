@@ -27,7 +27,7 @@ class ContinentServiceTest {
         //given
         final String europa = "Europa";
         //when
-        continentService.addContinent(europa);
+        continentService.add(europa);
         List<Continent> continentList = continentRepository.findAll();
         //then
         assertEquals(1, continentList.size());
@@ -37,7 +37,7 @@ class ContinentServiceTest {
     void remove(){
         //given
         final String europa = "Europa";
-        continentService.addContinent(europa);
+        continentService.add(europa);
         //when
         continentService.remove(europa);
         List<Continent> continentList = continentRepository.findAllByName(europa);
