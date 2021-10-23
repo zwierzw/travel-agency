@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface Admin {
 
-     void add();
-     void remove();
-     void modify();
-     void show();
+     void add(String name);
+     void remove(String name);
+     void modify(String name);
+     void show(String name);
 
 }

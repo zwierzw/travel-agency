@@ -15,7 +15,7 @@ public class HotelService implements Admin {
     private HotelRepository hotelRepository;
 
     @Override
-    public void add() {
+    public void add(String name) {
         final Continent europa = new Continent("Europa");
         final Country polska = new Country("Polska", europa);
         final City warszawa = new City("Warszawa", polska);
@@ -26,19 +26,17 @@ public class HotelService implements Admin {
     }
 
     @Override
-    public void modify() {
+    public void remove(String name) {
 
     }
 
     @Override
-    public void show() {
+    public void modify(String name) {
 
     }
 
     @Override
-    public void remove() {
+    public void show(String name) {
 
     }
-
-
 }
