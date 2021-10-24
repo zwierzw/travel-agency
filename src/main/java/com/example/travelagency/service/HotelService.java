@@ -21,7 +21,7 @@ public class HotelService implements AdminHotel {
 
     @Override
     public void removeHotel(String name) {
-        Hotel hotel = hotelRepository.findByName();
+        Hotel hotel = hotelRepository.findByName(name);
         hotelRepository.delete(hotel);
 
     }

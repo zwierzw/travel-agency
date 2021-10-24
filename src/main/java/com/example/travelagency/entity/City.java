@@ -23,7 +23,6 @@ public class City {
     private Country country;
 
 
-
     public City(String name, Country country) {
         this.id = UUID.randomUUID();
         this.name = name;

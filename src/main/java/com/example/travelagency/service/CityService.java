@@ -22,7 +22,7 @@ public class CityService implements AdminCity {
 
     @Override
     public void removeCity(String name) {
-        City city = cityRepository.findByName();
+        City city = cityRepository.findByName(name);
         cityRepository.delete(city);
 
     }

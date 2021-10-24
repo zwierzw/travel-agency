@@ -39,7 +39,7 @@ class UserTest {
         final Airport beauvais = new Airport("Beauvais", paris);
 
 
-        final var Tour = new Tour(warszawa, modlin, berlin, tempelhof, ibis, new Date(2021,12,12), new Date(2021,12, 20), 8,
+        final var Tour = new Tour("Polska-Niemcy", warszawa, modlin, berlin, tempelhof, ibis, new Date(2021,12,12), new Date(2021,12, 20), 8,
                 Type.AI, 1500.50, 1000.70, false, 20, 20);
         //When
 

@@ -21,7 +21,7 @@ public class AirportService implements AdminAirport {
 
     @Override
     public void removeAirport(String name, City city) {
-        Airport airport = airportRepository.findByName();
+        Airport airport = airportRepository.findByName(name);
         airportRepository.delete(airport);
     }
 }
