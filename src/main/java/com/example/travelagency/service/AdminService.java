@@ -1,14 +1,36 @@
 package com.example.travelagency.service;
 
 import com.example.travelagency.dto.*;
-import com.example.travelagency.entity.City;
-import com.example.travelagency.entity.Continent;
-import com.example.travelagency.entity.Country;
-import com.example.travelagency.entity.Type;
+import com.example.travelagency.entity.*;
+import com.example.travelagency.repository.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 
 public class AdminService implements AdminTour, AdminContinent, AdminCountry, AdminCity, AdminAirport, AdminHotel {
+
+    // nie jestem pewien czy te autowired będą potrzebne, ale możliwe że tak, na wszelki wypadek je tu przekopiowałem
+    @Autowired
+    private TourRepository tourRepository;
+
+    @Autowired
+    private CityRepository cityRepository;
+
+    @Autowired
+    private AirportRepository airportRepository;
+
+    @Autowired
+    private HotelRepository hotelRepository;
+
+    @Autowired
+    private ContinentRepository continentRepository;
+
+    @Autowired
+    private CountryRepository countryRepository;
+
+
+
+
     @Override
     public void addAirport(String name, City city) {
 
@@ -30,8 +52,8 @@ public class AdminService implements AdminTour, AdminContinent, AdminCountry, Ad
     }
 
     @Override
-    public void addContinent(String name) {
-
+    public void addContinent(String name) { //to jest połączenie metody addContinent z bazą
+        //tu chcesz dodać kontynent do bazy danych, czyli chyba musisz napisać Query SQLowe?
     }
 
     @Override

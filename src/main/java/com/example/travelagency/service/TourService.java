@@ -23,13 +23,6 @@ public class TourService implements AdminTour {
     @Autowired
     private HotelRepository hotelRepository;
 
-    @Autowired
-    private ContinentRepository continentRepository;
-
-    @Autowired
-    private CountryRepository countryRepository;
-
-
     @Override
     public void addTour(String name, String departureCity, String departureAirport,
                         String arrivalCity, String arrivalAirport,
