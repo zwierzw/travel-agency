@@ -18,7 +18,8 @@ public class Airport {
     private UUID id;
     private String name;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "city")
     private City city;
 
     public Airport(String name, City city) {

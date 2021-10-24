@@ -20,6 +20,7 @@ public class Hotel {
     private String description;
 
     @ManyToOne
+    @JoinColumn(name = "city")
     private City city;
 
     public Hotel(String name, int stars, String description, City city) {
