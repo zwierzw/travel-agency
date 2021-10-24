@@ -13,13 +13,13 @@ public class ContinentService implements AdminContinent {
     private ContinentRepository continentRepository;
 
     @Override
-    public void add(String name) {
+    public void addContinent(String name) {
         final Continent continent = new Continent(name);
         continentRepository.save(continent);
     }
 
     @Override
-    public void remove(String name) {
+    public void removeContinent(String name) {
         Continent continent = continentRepository.findByName(name);
         continentRepository.delete(continent);
     }

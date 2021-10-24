@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AdminContinent {
 
-     void add(String name);;
-     void remove(String name);
+     void addContinent(String name);;
+     void removeContinent(String name);
 
 }
