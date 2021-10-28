@@ -7,84 +7,114 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 
-public class AdminService implements AdminTour, AdminContinent, AdminCountry, AdminCity, AdminAirport, AdminHotel {
+public class AdminService implements  AdminTranslator, AdminTour{
 
     // nie jestem pewien czy te autowired będą potrzebne, ale możliwe że tak, na wszelki wypadek je tu przekopiowałem
-//    @Autowired
-//    private TourRepository tourRepository;
-//
-//    @Autowired
-//    private CityRepository cityRepository;
-//
-//    @Autowired
-//    private AirportRepository airportRepository;
-//
-//    @Autowired
-//    private HotelRepository hotelRepository;
-//
-//    @Autowired
-//    private ContinentRepository continentRepository;
-//
-//    @Autowired
-//    private CountryRepository countryRepository;
+    @Autowired
+    private TourRepository tourRepository;
+
+    @Autowired
+    private CityRepository cityRepository;
+
+    @Autowired
+    private AirportRepository airportRepository;
+
+    @Autowired
+    private HotelRepository hotelRepository;
+
+    @Autowired
+    private ContinentRepository continentRepository;
+
+    @Autowired
+    private CountryRepository countryRepository;
 
 
     @Autowired
     private ContinentService continentService;
 
+    @Autowired
+    private AirportService airportService;
+
+    @Autowired
+    private CityService cityService;
+
+    @Autowired
+    private CountryService countryService;
+
+    @Autowired
+    private HotelService hotelService;
+
+    @Autowired
+    private TourService tourService;
+
 
     @Override
-    public void addAirport(String name, City city) {
+    public void addAirportTranslate(String name, String city) {
+        City city1 = cityRepository.findByName(city);
+        airportService.addAirport(name, city1);
+    }
 
+    // TODO: zastanów się nad koniecznością parametru string city prze removeAirport
+    @Override
+    public void removeAirportTranslate(String name, String city) {
+        City city2 = cityRepository.findByName(city);
+        airportService.removeAirport(name, city2);
     }
 
     @Override
-    public void removeAirport(String name, City city) {
-
+    public void addCityTranslate(String name, String country) {
+        Country country1 = countryRepository.findByName(country);
+        cityService.addCity(name, country1);
     }
 
     @Override
-    public void addCity(String name, Country country) {
-
+    public void removeCityTranslate(String name) {
+        cityService.removeCity(name);
     }
 
     @Override
-    public void removeCity(String name) {
-
-    }
-
-    @Override
-    public void addContinent(String name) {
+    public void addContinentTranslate(String name) {
         continentService.addContinent(name);
     }
 
     @Override
-    public void removeContinent(String name) {
-
+    public void removeContinentTranslate(String name) {
+        continentService.removeContinent(name);
     }
 
     @Override
-    public void addCountry(String name, Continent continent) {
-
+    public void addCountryTranslate(String name, String continent) {
+        Continent continent1 = continentRepository.findByName(continent);
+        countryService.addCountry(name, continent1);
     }
 
     @Override
-    public void removeCountry(String name) {
-
+    public void removeCountryTranslate(String name) {
+        countryService.removeCountry(name);
     }
 
     @Override
-    public void addHotel(String name, int stars, String description, City city) {
-
+    public void addHotelTranslate(String name, int stars, String description, String city) {
+        City city3 = cityRepository.findByName(city);
+        hotelService.addHotel(name, stars, description, city3);
     }
 
     @Override
-    public void removeHotel(String name) {
-
+    public void removeHotelTranslate(String name) {
+        hotelService.removeHotel(name);
     }
 
+//    TODO czy rozdzielać metodę addTour w obrębie TourService
     @Override
-    public void addTour(String name, String departureCity, String departureAirport, String arrivalCity, String arrivalAirport, String arrivalHotel, Date departureDate, Date arrivalDate, int numberOfTourDays, Type typoOfTour, double priceForAdult, double priceForChild, boolean isPromoted, int allPlacesForAdults, int allPlacesForChildren) {
+    public void addTour(String name, String departureCity, String departureAirport,
+                        String arrivalCity, String arrivalAirport,
+                        String arrivalHotel, Date departureDate,
+                        Date arrivalDate, int numberOfTourDays, Type typoOfTour,
+                        double priceForAdult, double priceForChild,
+                        boolean isPromoted, int allPlacesForAdults,
+                        int allPlacesForChildren){
+
 
     }
+
 }

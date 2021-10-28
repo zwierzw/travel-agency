@@ -23,6 +23,7 @@ public class TourService implements AdminTour {
     @Autowired
     private HotelRepository hotelRepository;
 
+//TODO metoda addTour ma funkcjonalność translatora i dodawania do bazy, czy rozdzielać to?
     @Override
     public void addTour(String name, String departureCity, String departureAirport,
                         String arrivalCity, String arrivalAirport,

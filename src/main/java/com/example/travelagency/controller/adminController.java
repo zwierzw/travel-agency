@@ -20,6 +20,6 @@ public class adminController {
     */
     @GetMapping("/")
     public void addContinent(String name) {
-        adminService.addContinent(name);
+        adminService.addContinentTranslate(name);
     }
 }
