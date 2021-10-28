@@ -10,25 +10,27 @@ import java.util.Date;
 public class AdminService implements AdminTour, AdminContinent, AdminCountry, AdminCity, AdminAirport, AdminHotel {
 
     // nie jestem pewien czy te autowired będą potrzebne, ale możliwe że tak, na wszelki wypadek je tu przekopiowałem
-    @Autowired
-    private TourRepository tourRepository;
+//    @Autowired
+//    private TourRepository tourRepository;
+//
+//    @Autowired
+//    private CityRepository cityRepository;
+//
+//    @Autowired
+//    private AirportRepository airportRepository;
+//
+//    @Autowired
+//    private HotelRepository hotelRepository;
+//
+//    @Autowired
+//    private ContinentRepository continentRepository;
+//
+//    @Autowired
+//    private CountryRepository countryRepository;
+
 
     @Autowired
-    private CityRepository cityRepository;
-
-    @Autowired
-    private AirportRepository airportRepository;
-
-    @Autowired
-    private HotelRepository hotelRepository;
-
-    @Autowired
-    private ContinentRepository continentRepository;
-
-    @Autowired
-    private CountryRepository countryRepository;
-
-
+    private ContinentService continentService;
 
 
     @Override
@@ -52,8 +54,8 @@ public class AdminService implements AdminTour, AdminContinent, AdminCountry, Ad
     }
 
     @Override
-    public void addContinent(String name) { //to jest połączenie metody addContinent z bazą
-        //tu chcesz dodać kontynent do bazy danych, czyli chyba musisz napisać Query SQLowe?
+    public void addContinent(String name) {
+        continentService.addContinent(name);
     }
 
     @Override
