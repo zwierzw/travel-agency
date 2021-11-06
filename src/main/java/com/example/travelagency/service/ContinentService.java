@@ -24,5 +24,10 @@ public class ContinentService implements AdminContinent {
         continentRepository.delete(continent);
     }
 
+    @Override
+    public Continent findContinent(String name) {
+        return continentRepository.findByName(name);
+    }
+
 
 }
