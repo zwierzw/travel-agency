@@ -25,10 +25,7 @@ public class adminController {
     - treść po @GetMapping("/BLABLABLA") to jest właśnie ENDPOINT, którym wystawiamy na jakiś URL nasze dane, z którymi
     połączy się Mateusz
     */
-//    @GetMapping("/")
-//    public void addContinent(String name) {
-//        adminService.addContinentTranslate(name);
-//    }
+
 
     @PostMapping("/addContinent")
     public ResponseEntity<Continent> addContinent(@RequestBody ContinentDto newContinent) {
@@ -57,6 +54,13 @@ public class adminController {
         } else {
             return new ResponseEntity<>(foundContinent, HttpStatus.OK);
         }
+    }
+
+    @GetMapping("/listAllContinents")
+    public ResponseEntity<ContinentListDto> listAllContinents(){
+        ContinentListDto continentListDto = new ContinentListDto();
+        continentListDto.setContinentList(continentService.findAllContinents());
+        return new ResponseEntity<>(continentListDto, HttpStatus.OK);
     }
     
     
@@ -87,6 +91,14 @@ public class adminController {
         }
     }
 
+    @GetMapping("/listAllCountries")
+    public ResponseEntity<CountryListDto> listAllCountries(){
+        CountryListDto countryListDto = new CountryListDto();
+        countryListDto.setCountryList(countryService.findAllCountries());
+        return new ResponseEntity<>(countryListDto, HttpStatus.OK);
+    }
+
+
     @PostMapping("/addCity")
     public ResponseEntity<City> addCity (@RequestBody CityDto newCity) {
         cityService.addCity(newCity.getName(), countryService.findCountry(newCity.getCountry()));
@@ -113,6 +125,14 @@ public class adminController {
             return new ResponseEntity<>(foundCity, HttpStatus.OK);
         }
     }
+
+    @GetMapping("/listAllCities")
+    public ResponseEntity<CityListDto> listAllCities(){
+        CityListDto cityListDto = new CityListDto();
+        cityListDto.setCityList(cityService.findAllCities());
+        return new ResponseEntity<>(cityListDto, HttpStatus.OK);
+    }
+
 
     @PostMapping("/addHotel")
     public ResponseEntity<Hotel> addHotel (@RequestBody HotelDto newHotel) {
@@ -142,6 +162,13 @@ public class adminController {
         }
     }
 
+    @GetMapping("/listAllHotels")
+    public ResponseEntity<HotelListDto> listAllHotels(){
+        HotelListDto hotelListDto = new HotelListDto();
+        hotelListDto.setHotelList(hotelService.findAllHotels());
+        return new ResponseEntity<>(hotelListDto, HttpStatus.OK);
+    }
+
     @PostMapping("/addAirport")
     public ResponseEntity<Airport> addAirport (@RequestBody AirportDto newAirport) {
         airportService.addAirport(newAirport.getName(), cityService.findCity(newAirport.getCity()));
@@ -169,6 +196,11 @@ public class adminController {
         }
     }
 
-
+    @GetMapping("/listAllAirports")
+    public ResponseEntity<AirportListDto> listAllAirports(){
+        AirportListDto airportListDto = new AirportListDto();
+        airportListDto.setAirportList(airportService.findAllAirports());
+        return new ResponseEntity<>(airportListDto, HttpStatus.OK);
+    }
 
 }

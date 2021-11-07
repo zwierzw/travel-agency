@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class CityService implements AdminCity {
@@ -30,5 +32,10 @@ public class CityService implements AdminCity {
     @Override
     public City findCity(String name){
         return cityRepository.findByName(name);
+    }
+
+    @Override
+    public List<City> findAllCities(){
+        return cityRepository.findAll();
     }
 }

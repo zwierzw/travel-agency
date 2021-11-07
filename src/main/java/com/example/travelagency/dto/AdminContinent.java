@@ -10,5 +10,6 @@ public interface AdminContinent {
      void addContinent(String name);;
      void removeContinent(String name);
      Continent findContinent(String name);
+     List<Continent> findAllContinents();
 
 }

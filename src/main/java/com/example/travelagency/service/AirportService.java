@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class AirportService implements AdminAirport {
@@ -29,5 +31,10 @@ public class AirportService implements AdminAirport {
     @Override
     public Airport findAirport (String name){
         return airportRepository.findByName(name);
+    }
+
+    @Override
+    public List<Airport> findAllAirports() {
+        return airportRepository.findAll();
     }
 }

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class HotelService implements AdminHotel {
@@ -29,5 +31,10 @@ public class HotelService implements AdminHotel {
     @Override
     public Hotel findHotel (String name){
         return hotelRepository.findByName(name);
+    }
+
+    @Override
+    public List<Hotel> findAllHotels(){
+        return hotelRepository.findAll();
     }
 }

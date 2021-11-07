@@ -13,7 +13,9 @@ import java.util.List;
 public interface ContinentRepository extends JpaRepository<Continent, Long> {
 
     Continent findByName(String name);
+    //TODO ta metoda findAllByName nie spełnia chyba żadnej nowej funkcjonalności i jest w testach tylko
     List<Continent> findAllByName(String name);
+
 
     @Modifying
     @Query("delete from Continent c where c.name=:name")
