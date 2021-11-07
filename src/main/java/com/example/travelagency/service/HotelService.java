@@ -6,8 +6,10 @@ import com.example.travelagency.entity.*;
 import com.example.travelagency.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class HotelService implements AdminHotel {
 
     @Autowired
@@ -21,8 +23,11 @@ public class HotelService implements AdminHotel {
 
     @Override
     public void removeHotel(String name) {
-        Hotel hotel = hotelRepository.findByName(name);
-        hotelRepository.delete(hotel);
+        hotelRepository.deleteByName(name);
+    }
 
+    @Override
+    public Hotel findHotel (String name){
+        return hotelRepository.findByName(name);
     }
 }

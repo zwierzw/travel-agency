@@ -1,12 +1,8 @@
 package com.example.travelagency.controller;
 
-import com.example.travelagency.dto.ContinentDto;
-import com.example.travelagency.dto.CountryDto;
-import com.example.travelagency.entity.Continent;
-import com.example.travelagency.entity.Country;
-import com.example.travelagency.service.AdminService;
-import com.example.travelagency.service.ContinentService;
-import com.example.travelagency.service.CountryService;
+import com.example.travelagency.dto.*;
+import com.example.travelagency.entity.*;
+import com.example.travelagency.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +17,9 @@ public class adminController {
 
     private final ContinentService continentService;
     private final CountryService countryService;
+    private final CityService cityService;
+    private final AirportService airportService;
+    private final HotelService hotelService;
 
     /*to jest połączenie internet - admin service dla metody addContinent
     - treść po @GetMapping("/BLABLABLA") to jest właśnie ENDPOINT, którym wystawiamy na jakiś URL nasze dane, z którymi
@@ -87,4 +86,89 @@ public class adminController {
             return new ResponseEntity<>(foundCountry, HttpStatus.OK);
         }
     }
+
+    @PostMapping("/addCity")
+    public ResponseEntity<City> addCity (@RequestBody CityDto newCity) {
+        cityService.addCity(newCity.getName(), countryService.findCountry(newCity.getCountry()));
+        City addedCity = cityService.findCity(newCity.getName());
+        if (addedCity == null) {
+            throw new IllegalStateException();
+        } else {
+            return new ResponseEntity<>(addedCity, HttpStatus.CREATED);
+        }
+    }
+
+    @DeleteMapping("/removeCity")
+    public ResponseEntity<Void> removeCity (@RequestBody CityDto newCity) {
+        cityService.removeCity(newCity.getName());
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @GetMapping("/findCity")
+    public ResponseEntity<City> findCity (@RequestParam String name){
+        City foundCity = cityService.findCity(name);
+        if (foundCity == null) {
+            throw new NullPointerException();
+        } else {
+            return new ResponseEntity<>(foundCity, HttpStatus.OK);
+        }
+    }
+
+    @PostMapping("/addHotel")
+    public ResponseEntity<Hotel> addHotel (@RequestBody HotelDto newHotel) {
+        hotelService.addHotel(newHotel.getName(), newHotel.getStars(), newHotel.getDescription(),
+                cityService.findCity(newHotel.getCity()));
+        Hotel addedHotel = hotelService.findHotel(newHotel.getName());
+        if (addedHotel == null) {
+            throw new IllegalStateException();
+        } else {
+            return new ResponseEntity<>(addedHotel, HttpStatus.CREATED);
+        }
+    }
+
+    @DeleteMapping("/removeHotel")
+    public ResponseEntity<Void> removeHotel (@RequestBody HotelDto newHotel) {
+        hotelService.removeHotel(newHotel.getName());
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @GetMapping("/findHotel")
+    public ResponseEntity<Hotel> findHotel (@RequestParam String name){
+        Hotel foundHotel = hotelService.findHotel(name);
+        if (foundHotel == null) {
+            throw new NullPointerException();
+        } else {
+            return new ResponseEntity<>(foundHotel, HttpStatus.OK);
+        }
+    }
+
+    @PostMapping("/addAirport")
+    public ResponseEntity<Airport> addAirport (@RequestBody AirportDto newAirport) {
+        airportService.addAirport(newAirport.getName(), cityService.findCity(newAirport.getCity()));
+        Airport addedAirport = airportService.findAirport(newAirport.getName());
+        if (addedAirport == null) {
+            throw new IllegalStateException();
+        } else {
+            return new ResponseEntity<>(addedAirport, HttpStatus.CREATED);
+        }
+    }
+
+    @DeleteMapping("/removeAirport")
+    public ResponseEntity<Void> removeAirport (@RequestBody AirportDto newAirport) {
+        airportService.removeAirport(newAirport.getName());
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @GetMapping("/findAirport")
+    public ResponseEntity<Airport> findAirport (@RequestParam String name){
+        Airport foundAirport = airportService.findAirport(name);
+        if (foundAirport == null) {
+            throw new NullPointerException();
+        } else {
+            return new ResponseEntity<>(foundAirport, HttpStatus.OK);
+        }
+    }
+
+
+
 }

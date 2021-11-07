@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 
-public class AdminService implements  AdminTranslator, AdminTour{
+public class AdminService implements AdminTranslator, AdminTour {
 
     // nie jestem pewien czy te autowired będą potrzebne, ale możliwe że tak, na wszelki wypadek je tu przekopiowałem
     @Autowired
@@ -54,11 +54,10 @@ public class AdminService implements  AdminTranslator, AdminTour{
         airportService.addAirport(name, city1);
     }
 
-    // TODO: zastanów się nad koniecznością parametru string city prze removeAirport
     @Override
     public void removeAirportTranslate(String name, String city) {
         City city2 = cityRepository.findByName(city);
-        airportService.removeAirport(name, city2);
+        airportService.removeAirport(name);
     }
 
     @Override
@@ -104,7 +103,7 @@ public class AdminService implements  AdminTranslator, AdminTour{
         hotelService.removeHotel(name);
     }
 
-//    TODO czy rozdzielać metodę addTour w obrębie TourService
+    //    TODO czy rozdzielać metodę addTour w obrębie TourService
     @Override
     public void addTour(String name, String departureCity, String departureAirport,
                         String arrivalCity, String arrivalAirport,
@@ -112,7 +111,7 @@ public class AdminService implements  AdminTranslator, AdminTour{
                         Date arrivalDate, int numberOfTourDays, Type typoOfTour,
                         double priceForAdult, double priceForChild,
                         boolean isPromoted, int allPlacesForAdults,
-                        int allPlacesForChildren){
+                        int allPlacesForChildren) {
 
 
     }

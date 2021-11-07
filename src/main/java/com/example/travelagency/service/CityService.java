@@ -6,8 +6,10 @@ import com.example.travelagency.entity.Country;
 import com.example.travelagency.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class CityService implements AdminCity {
 
     @Autowired
@@ -22,8 +24,11 @@ public class CityService implements AdminCity {
 
     @Override
     public void removeCity(String name) {
-        City city = cityRepository.findByName(name);
-        cityRepository.delete(city);
+       cityRepository.deleteByName(name);
+    }
 
+    @Override
+    public City findCity(String name){
+        return cityRepository.findByName(name);
     }
 }
