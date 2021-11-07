@@ -24,4 +24,9 @@ public class CountryService implements AdminCountry {
         Country country = countryRepository.findByName(name);
         countryRepository.delete(country);
     }
+
+    @Override
+    public Country findCountry(String name) {
+        return countryRepository.findByName(name);
+    }
 }

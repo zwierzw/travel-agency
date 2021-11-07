@@ -5,7 +5,9 @@ import com.example.travelagency.entity.Continent;
 import com.example.travelagency.repository.ContinentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @Service
 public class ContinentService implements AdminContinent {
 
@@ -20,14 +22,14 @@ public class ContinentService implements AdminContinent {
 
     @Override
     public void removeContinent(String name) {
-        Continent continent = continentRepository.findByName(name);
-        continentRepository.delete(continent);
+       continentRepository.deleteByName(name);
     }
 
     @Override
     public Continent findContinent(String name) {
         return continentRepository.findByName(name);
     }
+
 
 
 }

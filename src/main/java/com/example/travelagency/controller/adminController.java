@@ -1,9 +1,12 @@
 package com.example.travelagency.controller;
 
 import com.example.travelagency.dto.ContinentDto;
+import com.example.travelagency.dto.CountryDto;
 import com.example.travelagency.entity.Continent;
+import com.example.travelagency.entity.Country;
 import com.example.travelagency.service.AdminService;
 import com.example.travelagency.service.ContinentService;
+import com.example.travelagency.service.CountryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 public class adminController {
 
     private final ContinentService continentService;
+    private final CountryService countryService;
 
     /*to jest połączenie internet - admin service dla metody addContinent
     - treść po @GetMapping("/BLABLABLA") to jest właśnie ENDPOINT, którym wystawiamy na jakiś URL nasze dane, z którymi
@@ -29,11 +33,42 @@ public class adminController {
     @PostMapping("/addContinent")
     public ResponseEntity<Continent> add(@RequestBody ContinentDto newContinent) {
         continentService.addContinent(newContinent.getName());
-        Continent user = continentService.findContinent(newContinent.getName());
-        if (user == null) {
+        Continent addedContinent = continentService.findContinent(newContinent.getName());
+        if (addedContinent == null) {
             throw new IllegalStateException();
         } else {
-            return new ResponseEntity<>(user, HttpStatus.CREATED);
+            return new ResponseEntity<>(addedContinent, HttpStatus.CREATED);
         }
     }
+
+
+    @DeleteMapping("/removeContinent")
+    public ResponseEntity<Void> removeContinent(@RequestBody ContinentDto newContinent){
+        continentService.removeContinent(newContinent.getName());
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+    
+    
+    @GetMapping("/findContinent")
+    public ResponseEntity<Continent> findContinent(@RequestParam String name){
+       Continent foundContinent = continentService.findContinent(name);
+        if (foundContinent == null) {
+            throw new NullPointerException();
+        } else {
+            return new ResponseEntity<>(foundContinent, HttpStatus.OK);
+        }
+    }
+    
+    
+    @PostMapping("/addCountry")
+    public ResponseEntity<Country> addCountry(@RequestBody CountryDto newCountry) {
+        countryService.addCountry(newCountry.getName(), continentService.findContinent(newCountry.getContinent()));
+        Country addedCountry = countryService.findCountry(newCountry.getName());
+        if (addedCountry == null) {
+            throw new IllegalStateException();
+        } else {
+            return new ResponseEntity<>(addedCountry, HttpStatus.CREATED);
+        }
+    }
+
 }
