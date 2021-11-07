@@ -15,7 +15,8 @@ import java.util.UUID;
 @Data
 public class Airport {
     @Id
-    private UUID id;
+    @GeneratedValue
+    private Long id;
     private String name;
 
     @ManyToOne
@@ -23,7 +24,6 @@ public class Airport {
     private City city;
 
     public Airport(String name, City city) {
-        this.id = UUID.randomUUID();
         this.name = name;
         this.city = city;
     }

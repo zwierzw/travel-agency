@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/travel-agency")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*") //Żeby skomunikować frontend z backendem
 public class adminController {
 
     private final ContinentService continentService;
@@ -31,7 +32,7 @@ public class adminController {
 //    }
 
     @PostMapping("/addContinent")
-    public ResponseEntity<Continent> add(@RequestBody ContinentDto newContinent) {
+    public ResponseEntity<Continent> addContinent(@RequestBody ContinentDto newContinent) {
         continentService.addContinent(newContinent.getName());
         Continent addedContinent = continentService.findContinent(newContinent.getName());
         if (addedContinent == null) {
@@ -71,4 +72,19 @@ public class adminController {
         }
     }
 
+    @DeleteMapping("/removeCountry")
+    public ResponseEntity<Void> removeCountry(@RequestBody CountryDto newCountry) {
+        countryService.removeCountry(newCountry.getName());
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @GetMapping("/findCountry")
+    public ResponseEntity<Country> findCountry(@RequestParam String name){
+        Country foundCountry = countryService.findCountry(name);
+        if (foundCountry == null) {
+            throw new NullPointerException();
+        } else {
+            return new ResponseEntity<>(foundCountry, HttpStatus.OK);
+        }
+    }
 }

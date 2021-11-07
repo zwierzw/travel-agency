@@ -17,7 +17,8 @@ import java.util.UUID;
 public class Tour {
 
     @Id
-    private UUID id;
+    @GeneratedValue
+    private Long id;
     private String name;
 
     @ManyToOne
@@ -53,7 +54,6 @@ public class Tour {
                 Airport arrivalAirport, Hotel arrivalHotel, Date departureDate, Date arrivalDate, int numberOfTourDays,
                 Type typeOfTour, double priceForAdult, double priceForChild, boolean isPromoted, int allPlacesForAdults,
                 int allPlacesForChildren) {
-        this.id = UUID.randomUUID();
         this.name = name;
         this.departureCity = departureCity;
         this.departureAirport = departureAirport;

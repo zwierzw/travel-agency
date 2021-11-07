@@ -15,7 +15,8 @@ import java.util.UUID;
 public class City {
 
     @Id
-    private UUID id;
+    @GeneratedValue
+    private Long id;
     private String name;
 
     @ManyToOne
@@ -23,7 +24,6 @@ public class City {
 
 
     public City(String name, Country country) {
-        this.id = UUID.randomUUID();
         this.name = name;
         this.country = country;
     }

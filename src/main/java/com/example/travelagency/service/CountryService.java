@@ -6,8 +6,10 @@ import com.example.travelagency.entity.Country;
 import com.example.travelagency.repository.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional //na poziomie serwisów komunikujących się z Repo zawsze dodaj Transactionala
 public class CountryService implements AdminCountry {
 
     @Autowired
@@ -21,8 +23,7 @@ public class CountryService implements AdminCountry {
 
     @Override
     public void removeCountry(String name) {
-        Country country = countryRepository.findByName(name);
-        countryRepository.delete(country);
+        countryRepository.deleteByName(name);
     }
 
     @Override

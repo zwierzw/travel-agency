@@ -17,14 +17,15 @@ import java.util.UUID;
 public class Country {
 
     @Id
-    private UUID id;
+    @GeneratedValue
+    private Long id;
     private String name;
 
     @ManyToOne
+    @JoinColumn(name = "continent_id")
     private Continent continent;
 
     public Country(String name, Continent continent) {
-        this.id = UUID.randomUUID();
         this.name = name;
         this.continent = continent;
     }
