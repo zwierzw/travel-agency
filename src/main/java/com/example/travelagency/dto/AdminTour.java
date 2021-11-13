@@ -3,6 +3,7 @@ package com.example.travelagency.dto;
 import com.example.travelagency.entity.*;
 
 import java.util.Date;
+import java.util.List;
 
 public interface AdminTour {
 
@@ -14,4 +15,5 @@ public interface AdminTour {
 
     void removeTour (String name);
     Tour findTour (String name);
+    List<Tour> findAllTours();
 }

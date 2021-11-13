@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 @Transactional
@@ -56,5 +57,10 @@ public class TourService implements AdminTour {
     @Override
     public void removeTour(String name) {
         tourRepository.deleteByName(name);
+    }
+
+    @Override
+    public List<Tour> findAllTours() {
+        return tourRepository.findAll();
     }
 }

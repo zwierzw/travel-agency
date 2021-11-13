@@ -6,6 +6,7 @@ import com.example.travelagency.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
+import java.util.List;
 
 public class AdminService implements AdminTranslator, AdminTour {
 
@@ -121,6 +122,11 @@ public class AdminService implements AdminTranslator, AdminTour {
 
     @Override
     public Tour findTour(String name) {
+        return null;
+    }
+
+    @Override
+    public List<Tour> findAllTours() {
         return null;
     }
 

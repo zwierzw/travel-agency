@@ -238,20 +238,20 @@ public class adminController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-//    @GetMapping("/findAirport")
-//    public ResponseEntity<Airport> findAirport (@RequestParam String name){
-//        Airport foundAirport = airportService.findAirport(name);
-//        if (foundAirport == null) {
-//            throw new NullPointerException();
-//        } else {
-//            return new ResponseEntity<>(foundAirport, HttpStatus.OK);
-//        }
-//    }
-//
-//    @GetMapping("/listAllAirports")
-//    public ResponseEntity<AirportListDto> listAllAirports(){
-//        AirportListDto airportListDto = new AirportListDto();
-//        airportListDto.setAirportList(airportService.findAllAirports());
-//        return new ResponseEntity<>(airportListDto, HttpStatus.OK);
-//    }
+    @GetMapping("/findTour")
+    public ResponseEntity<Tour> findTour (@RequestParam String name){
+        Tour foundTour = tourService.findTour(name);
+        if (foundTour == null) {
+            throw new NullPointerException();
+        } else {
+            return new ResponseEntity<>(foundTour, HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/listAllTours")
+    public ResponseEntity<TourListDto> listAllTours(){
+        TourListDto tourListDto = new TourListDto();
+        tourListDto.setTourList(tourService.findAllTours());
+        return new ResponseEntity<>(tourListDto, HttpStatus.OK);
+    }
 }
