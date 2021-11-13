@@ -47,4 +47,14 @@ public class TourService implements AdminTour {
 
         tourRepository.save(tour);
     }
+
+    @Override
+    public Tour findTour(String name) {
+        return tourRepository.findByName(name);
+    }
+
+    @Override
+    public void removeTour(String name) {
+        tourRepository.deleteByName(name);
+    }
 }

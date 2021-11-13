@@ -11,4 +11,7 @@ public interface AdminTour {
                   String arrivalHotel, Date departureDate, Date arrivalDate, int numberOfTourDays, Type typoOfTour,
                   double priceForAdult, double priceForChild, boolean isPromoted, int allPlacesForAdults,
                   int allPlacesForChildren);
+
+    void removeTour (String name);
+    Tour findTour (String name);
 }

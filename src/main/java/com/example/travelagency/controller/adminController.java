@@ -20,6 +20,7 @@ public class adminController {
     private final CityService cityService;
     private final AirportService airportService;
     private final HotelService hotelService;
+    private final TourService tourService;
 
     /*to jest połączenie internet - admin service dla metody addContinent
     - treść po @GetMapping("/BLABLABLA") to jest właśnie ENDPOINT, którym wystawiamy na jakiś URL nasze dane, z którymi
@@ -203,4 +204,54 @@ public class adminController {
         return new ResponseEntity<>(airportListDto, HttpStatus.OK);
     }
 
+
+    @PostMapping("/addTour")
+    public ResponseEntity<Tour> addTour (@RequestBody TourDto newTour) {
+        tourService.addTour(
+                newTour.getName(),
+                newTour.getDepartureCity(),
+                newTour.getDepartureAirport(),
+                newTour.getArrivalCity(),
+                newTour.getArrivalAirport(),
+                newTour.getArrivalHotel(),
+                newTour.getDepartureDate(),
+                newTour.getArrivalDate(),
+                newTour.getNumberOfTourDays(),
+                newTour.getTypeOfTour(),
+                newTour.getPriceForAdult(),
+                newTour.getPriceForChild(),
+                newTour.isPromoted(),
+                newTour.getAllPlacesForAdults(),
+                newTour.getAllPlacesForChildren()
+                );
+        Tour addedTour = tourService.findTour(newTour.getName());
+        if (addedTour == null) {
+            throw new IllegalStateException();
+        } else {
+            return new ResponseEntity<>(addedTour, HttpStatus.CREATED);
+        }
+    }
+
+    @DeleteMapping("/removeTour")
+    public ResponseEntity<Void> removeTour (@RequestBody TourDto newTour) {
+        tourService.removeTour(newTour.getName());
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+//    @GetMapping("/findAirport")
+//    public ResponseEntity<Airport> findAirport (@RequestParam String name){
+//        Airport foundAirport = airportService.findAirport(name);
+//        if (foundAirport == null) {
+//            throw new NullPointerException();
+//        } else {
+//            return new ResponseEntity<>(foundAirport, HttpStatus.OK);
+//        }
+//    }
+//
+//    @GetMapping("/listAllAirports")
+//    public ResponseEntity<AirportListDto> listAllAirports(){
+//        AirportListDto airportListDto = new AirportListDto();
+//        airportListDto.setAirportList(airportService.findAllAirports());
+//        return new ResponseEntity<>(airportListDto, HttpStatus.OK);
+//    }
 }

@@ -112,8 +112,17 @@ public class AdminService implements AdminTranslator, AdminTour {
                         double priceForAdult, double priceForChild,
                         boolean isPromoted, int allPlacesForAdults,
                         int allPlacesForChildren) {
-
-
     }
+
+    @Override
+    public void removeTour(String name) {
+        tourService.removeTour(name);
+    }
+
+    @Override
+    public Tour findTour(String name) {
+        return null;
+    }
+
 
 }
